@@ -9,8 +9,8 @@ export function isCell(event) {
 }
 
 export function matrix($target, $current) {
-  const target = $target.id(true)
-  const current = $current.id(true)
+  const target = $target.id(true);
+  const current = $current.id(true);
   const cols = range(current.col, target.col);
   const rows = range(current.row, target.row);
 
@@ -18,4 +18,25 @@ export function matrix($target, $current) {
     rows.forEach(row => acc.push(`${row}:${col}`));
     return acc;
   }, []);
+}
+
+export function nextSelector(key, {col, row}) {
+  switch (key) {
+    case 'Enter':
+    case 'ArrowDown':
+      row += 1;
+      break;
+    case 'Tab':
+    case 'ArrowRight':
+      col += 1;
+      break;
+    case 'ArrowLeft':
+      col = (col) ? col - 1 : 0;
+      break;
+    case 'ArrowUp':
+      row = (row) ? row - 1 : 0;
+      break;
+  }
+
+  return `[data-id="${row}:${col}"]`;
 }
