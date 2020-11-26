@@ -38,7 +38,7 @@ export class Table extends ExcelComponent {
       if (event.shiftKey) {
         // Group
         const $cells = matrix($target, this.selection.current)
-          .map(id => this.$root.find(`[data-id="${id}"]`));
+            .map(id => this.$root.find(`[data-id="${id}"]`));
         this.selection.selectGroup($cells);
       } else {
         // Wun Cell
