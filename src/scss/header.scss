@@ -7,7 +7,7 @@
   right: 0;
   left: 0;
   height: $header-height;
-  padding: 8px 4px 0px;
+  padding: 8px 4px 0;
   display: flex;
   justify-content: space-between;
 
@@ -35,4 +35,5 @@
   .button {
     @include button(red);
   }
+
 }
