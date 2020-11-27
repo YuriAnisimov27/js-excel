@@ -1,14 +1,16 @@
-export function capitalize(string = '') {
+// Pure functions
+export function capitalize(string) {
   if (typeof string !== 'string') {
-    return ''
+    return '';
   }
-  return string.charAt(0).toUpperCase() + string.slice(1)
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function range(cur, tar) {
-  const start = Math.min(cur, tar);
-  const finish = Math.max(cur, tar);
-  return new Array(finish - start + 1)
-      .fill(start)
-      .map((el, index) => el + index);
+export function range(start, end) {
+  if (start > end) {
+    [end, start] = [start, end];
+  }
+  return new Array(end - start + 1)
+      .fill('')
+      .map((_, index) => start + index);
 }

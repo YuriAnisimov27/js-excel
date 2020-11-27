@@ -14,13 +14,14 @@ export class TableSelection {
   }
 
   clear() {
-    this.group.forEach(cell => cell.removeClass(TableSelection.className));
+    this.group.forEach($el => $el.removeClass(TableSelection.className));
     this.group = [];
   }
 
   selectGroup($group = []) {
-    this.clear()
-    this.group = $group
-    this.group.forEach($el => $el.addClass(TableSelection.className))
+    this.clear();
+
+    this.group = $group;
+    this.group.forEach($el => $el.addClass(TableSelection.className));
   }
 }

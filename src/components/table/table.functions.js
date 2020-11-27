@@ -21,20 +21,21 @@ export function matrix($target, $current) {
 }
 
 export function nextSelector(key, {col, row}) {
+  const MIN_VALUE = 0;
   switch (key) {
     case 'Enter':
     case 'ArrowDown':
-      row += 1;
+      row++;
       break;
     case 'Tab':
     case 'ArrowRight':
-      col += 1;
+      col++;
       break;
     case 'ArrowLeft':
-      col = (col) ? col - 1 : 0;
+      col = col - 1 < MIN_VALUE ? MIN_VALUE : col - 1;
       break;
     case 'ArrowUp':
-      row = (row) ? row - 1 : 0;
+      row = row - 1 < MIN_VALUE ? MIN_VALUE : row - 1;
       break;
   }
 
