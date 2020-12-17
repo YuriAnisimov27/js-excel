@@ -9,14 +9,15 @@ const defaultState = {
   stylesState: {},
   currentText: '',
   currentStyles: defaultStyles,
+  openedDate: new Date().toJSON()
 };
 
-const normalize = (state) => ({
+const normalize = state => ({
   ...state,
   currentStyles: defaultStyles,
   currentText: ''
 });
 
-export const normalizeInitialState = state => {
+export function normalizeInitialState(state) {
   return state ? normalize(state) : clone(defaultState);
-};
+}
