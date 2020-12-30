@@ -2,7 +2,7 @@ import {createStore} from '@core/store/createStore';
 import {rootReducer} from '@/redux/rootReducer';
 import {debounce, storage} from '@core/utils';
 import {normalizeInitialState} from '@/redux/initialState';
-import {Page} from '@core/Page';
+import {Page} from '@core/page/Page';
 import {Excel} from '@/components/excel/Excel';
 import {Header} from '@/components/header/Header';
 import {Toolbar} from '@/components/toolbar/Toolbar';
@@ -39,7 +39,13 @@ class LocalStorageClient {
   }
 
   get() {
-    return Promise.resolve(storage(this.name));
+    return new Promise(resolve => {
+      const state = storage(this.name);
+
+      setTimeout(() => {
+        resolve(state)
+      }, 1500)
+    })
   }
 }
 
