@@ -1,6 +1,5 @@
 import {createStore} from '@core/store/createStore';
 import {rootReducer} from '@/redux/rootReducer';
-import {debounce, storage} from '@core/utils';
 import {normalizeInitialState} from '@/redux/initialState';
 import {Page} from '@core/page/Page';
 import {Excel} from '@/components/excel/Excel';
@@ -8,46 +7,8 @@ import {Header} from '@/components/header/Header';
 import {Toolbar} from '@/components/toolbar/Toolbar';
 import {Formula} from '@/components/formula/Formula';
 import {Table} from '@/components/table/Table';
-
-function storageName(param) {
-  return 'excel:' + param;
-}
-
-class StateProcessor {
-  constructor(client, delay = 300) {
-    this.client = client;
-    this.listen = debounce(this.listen.bind(this), delay);
-  }
-
-  listen(state) {
-    this.client.save(state);
-  }
-
-  get() {
-    return this.client.get();
-  }
-}
-
-class LocalStorageClient {
-  constructor(name) {
-    this.name = storageName(name);
-  }
-
-  save(state) {
-    storage(this.name, state);
-    return Promise.resolve();
-  }
-
-  get() {
-    return new Promise(resolve => {
-      const state = storage(this.name);
-
-      setTimeout(() => {
-        resolve(state)
-      }, 1500)
-    })
-  }
-}
+import {StateProcessor} from '@core/page/StateProcessor';
+import {LocalStorageClient} from '@/shared/LocalStorageClient';
 
 export class ExcelPage extends Page {
   constructor(param) {
